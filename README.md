@@ -11,13 +11,17 @@ pamac update
 pamac install vim
 
 # Customizations
-extensions: enable launch new instance
+# extensions: enable launch new instance
 
 
 # Run this to add ibt=off to the end of the GRUB_CMDLINE_LINUX_DEFAULT
 sed -i "s|\(GRUB_CMDLINE_LINUX_DEFAULT='.*\)'|\1 ibt=off'|" /etc/default/grub
 update-grub
-reboot
 
-# Now install nvidia drivers
-mhwd -a pci nonfree 300
+# Now install nvidia drivers, you might lose screen when updating. This ensure you power off properly and can power on when you are done.
+mhwd -a pci nonfree 0300 && poweroff
+
+# After rebooting enable 120hz from display settings
+
+TODO:
+Create auto decrypt USB key
