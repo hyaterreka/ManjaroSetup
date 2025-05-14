@@ -14,9 +14,19 @@ pamac install vim
 # Customizations
 ```
 extensions: enable launch new instance
-settings 
+settings
 > multitasking: turn off hot corners, turn off active screen edge
 > power:increase auto suspend to an hour
+> mouse & touchpad: pointer speed max
+> keyboard:
+  > shortcuts:
+    system:  super + R, run command prompt
+    windows: super + up, maximize windows vertically
+    custom:  super + T, launch new terminal, /usr/bin/kgx
+    
+
+keyboard shortcuts:
+> 
 ```
 # NVIDIA propietary drivers install
 
