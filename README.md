@@ -42,3 +42,17 @@ mhwd -a pci nonfree 0300 && poweroff
 ```
 TODO:
 Create auto decrypt USB key
+```
+# This only works if /boot is unencrypted
+mkfs.vfat -n KEY_LABEL /dev/sda
+mount /dev/sda /mnt
+dd if=/dev/urandom bs=1 count=4096 > /mnt/keyfile.lek
+cryptsetup luksAddKey /dev/lukspart /mnt/keyfile.lek
+# add to GRUB_CMDLINE_LINUX_DEFAULT
+cryptkey=/dev/disk/by-label/KEY_LABEL:vfat:/keyfile.lek
+#in /etc/mkinicpio.conf make sure MODULES has the vfat module
+MODULES=(crc32c vfat)
+update-grub
+mkinitcpio -P
+```
+
